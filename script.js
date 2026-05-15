@@ -5,14 +5,15 @@
 */
 
 const CATEGORIES = [
-  { num: '01', title: 'Coffee Zip',        sub: 'Iced & hot coffee',                file: 'images/01-coffee.jpg' },
-  { num: '02', title: "Iced Tea's",        sub: 'Herbal · black · fruit · green',   file: 'images/02-iced-tea.jpg' },
-  { num: '03', title: 'K-Noodle Series',   sub: 'Buldak · Samyang · Ramyun',        file: 'images/03-k-noodle.jpg' },
-  { num: '04', title: 'Shorts Orders',     sub: 'Japchae · chicken · rice',         file: 'images/04-shorts-orders.jpg' },
-  { num: '05', title: 'Silog & Rice',      sub: 'Tosilog · bibimbap · katsu',       file: 'images/05-silog-rice.jpg' },
-  { num: '06', title: 'Ice & Chill',       sub: 'Beers · soju · pulutan',           file: 'images/06-ice-chill.jpg' },
-  { num: '07', title: 'Siesta',            sub: 'Tteokbokki · kimbap · fries',      file: 'images/07-siesta.jpg' },
-  { num: '08', title: 'Sizzling Plates',   sub: 'Sisig · pork chop · barkada',      file: 'images/08-sizzling.jpg' },
+  { num: '01', title: 'Coffee Zip',         sub: 'Iced & hot coffee',                file: 'images/01-coffee.jpg' },
+  { num: '02', title: "Iced Tea's",         sub: 'Herbal · black · fruit · green',   file: 'images/02-iced-tea.jpg' },
+  { num: '03', title: 'Delights & Bites',   sub: 'Ice Talk · sodas · appetizers',    file: 'images/09-delights-bites.jpg' },
+  { num: '04', title: 'K-Noodle Series',    sub: 'Buldak · Samyang · Ramyun',        file: 'images/03-k-noodle.jpg' },
+  { num: '05', title: 'Shorts Orders',      sub: 'Japchae · chicken · rice',         file: 'images/04-shorts-orders.jpg' },
+  { num: '06', title: 'Silog & Rice',       sub: 'Tosilog · bibimbap · katsu',       file: 'images/05-silog-rice.jpg' },
+  { num: '07', title: 'Sizzling Plates',    sub: 'Sisig · pork chop · barkada',      file: 'images/08-sizzling.jpg' },
+  { num: '08', title: 'Siesta',             sub: 'Tteokbokki · kimbap · fries',      file: 'images/07-siesta.jpg' },
+  { num: '09', title: 'Ice & Chill',        sub: 'Beers · soju · pulutan',           file: 'images/06-ice-chill.jpg' },
 ];
 
 const grid     = document.getElementById('grid');

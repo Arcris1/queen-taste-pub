@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Queen Taste & Pub — Table QR Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:   #1B0F08;
+      --bg-rich:   #2A1810;
+      --bg-warm:   #4A2A18;
+      --gold:      #D4A574;
+      --gold-soft: #E5C792;
+      --gold-deep: #B8854A;
+      --cream:     #F5E6D3;
+      --cream-mid: #D9C4A6;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #2c2418;
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px;
+      gap: 24px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .controls button, .controls a {
+      background: var(--gold);
+      color: var(--bg-rich);
+      border: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .05em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .15s ease, background .2s ease;
+    }
+    .controls button:hover, .controls a:hover { background: var(--gold-soft); }
+    .controls button:active { transform: scale(.96); }
+    .controls .secondary {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .controls .secondary:hover { background: rgba(212,165,116,.15); }
+
+    /* ===== POSTER ===== */
+    .poster {
+      width: 210mm;          /* A4 width */
+      min-height: 297mm;     /* A4 height */
+      background:
+        radial-gradient(120% 80% at 50% -10%, rgba(212,165,116,.22), transparent 60%),
+        radial-gradient(80% 60% at 50% 100%, rgba(139,58,46,.25), transparent 70%),
+        linear-gradient(180deg, var(--bg-rich) 0%, var(--bg-warm) 60%, var(--bg-rich) 100%);
+      color: var(--cream);
+      padding: 40mm 24mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5);
+      border-radius: 4px;
+    }
+
+    /* corner ornaments */
+    .corner {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border: 2px solid var(--gold);
+      opacity: .6;
+    }
+    .corner.tl { top: 16mm; left: 16mm; border-right: none; border-bottom: none; }
+    .corner.tr { top: 16mm; right: 16mm; border-left: none; border-bottom: none; }
+    .corner.bl { bottom: 16mm; left: 16mm; border-right: none; border-top: none; }
+    .corner.br { bottom: 16mm; right: 16mm; border-left: none; border-top: none; }
+
+    .crown {
+      width: 80px; height: 60px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 12px rgba(212,165,116,.4));
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .4em;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold-soft);
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 84px;
+      line-height: .95;
+      color: var(--cream);
+      letter-spacing: .02em;
+    }
+
+    .amp {
+      font-style: italic;
+      color: var(--gold);
+      font-size: 28px;
+      letter-spacing: .15em;
+      display: block;
+      margin: 4px 0 0;
+      font-weight: 500;
+    }
+
+    .brand-line {
+      font-size: 18px;
+      letter-spacing: .4em;
+      color: var(--cream-mid);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 10px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .brand-line::before,
+    .brand-line::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-deep);
+      opacity: .7;
+    }
+    .brand-line::before { right: calc(100% + 18px); }
+    .brand-line::after  { left:  calc(100% + 18px); }
+
+    .tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--gold-soft);
+      margin-top: 22px;
+      letter-spacing: .04em;
+    }
+
+    /* ===== QR CARD ===== */
+    .qr-card {
+      margin-top: 38px;
+      background: var(--cream);
+      padding: 18px 18px 22px;
+      border-radius: 8px;
+      box-shadow:
+        0 0 0 6px rgba(212,165,116,.25),
+        0 0 0 12px rgba(212,165,116,.12),
+        0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .qr-card canvas, .qr-card img {
+      display: block;
+      width: 280px;
+      height: 280px;
+    }
+
+    .qr-card .corners-mini {
+      position: relative;
+      padding: 14px;
+      display: inline-block;
+    }
+    .qr-card .corners-mini::before,
+    .qr-card .corners-mini::after {
+      content: '';
+      position: absolute;
+      width: 24px; height: 24px;
+      border: 2px solid var(--bg-rich);
+    }
+    .qr-card .corners-mini::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+    .qr-card .corners-mini::after  { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+    .qr-label {
+      margin-top: 14px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--bg-rich);
+      font-size: 16px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      margin-top: 32px;
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: .04em;
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: var(--cream-mid);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    .poster-footer {
+      margin-top: auto;
+      padding-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--cream-mid);
+      letter-spacing: .04em;
+    }
+
+    .poster-footer .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .poster-footer strong {
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: var(--gold-deep);
+      opacity: .5;
+      margin: 8px 0;
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { background: white; padding: 0; gap: 0; }
+      .controls { display: none; }
+      .poster {
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        min-height: 100vh;
+        page-break-after: avoid;
+      }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTROLS (hidden when printing) -->
+  <div class="controls">
+    <button onclick="window.print()">🖨️  Print Poster</button>
+    <button class="secondary" onclick="downloadQR()">⬇️  Download QR (PNG)</button>
+    <a class="secondary" href="index.html">← Back to menu</a>
+  </div>
+
+  <!-- POSTER -->
+  <div class="poster" id="poster">
+
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+
+    <svg class="crown" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 14 L14 32 L24 18 L32 36 L40 18 L50 32 L58 14 L54 40 L10 40 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
+      <circle cx="6" cy="14" r="3" fill="currentColor"/>
+      <circle cx="32" cy="10" r="3.5" fill="currentColor"/>
+      <circle cx="58" cy="14" r="3" fill="currentColor"/>
+    </svg>
+
+    <p class="eyebrow">Welcome to</p>
+    <h1 class="brand">
+      Queen
+      <span class="amp">Taste</span>
+    </h1>
+    <span class="brand-line">&amp; Pub</span>
+
+    <p class="tagline">Feel Good · Eat Fresh · Live Well</p>
+
+    <!-- QR CARD -->
+    <div class="qr-card">
+      <div class="corners-mini">
+        <canvas id="qrCanvas" width="280" height="280"></canvas>
+      </div>
+      <div class="qr-label">Scan Our Menu</div>
+    </div>
+
+    <p class="cta">View the full menu</p>
+    <p class="cta-sub">Point your camera · tap the link</p>
+
+    <div class="poster-footer">
+      <div class="divider"></div>
+      <div class="row"><strong>📍</strong> Lotus St. cor. Gladiola, Talon Tres, Las Piñas City</div>
+      <div class="row"><strong>📞</strong> 0945 716 8208 &nbsp;·&nbsp; <strong>f</strong> Queen Taste &amp; Pub</div>
+    </div>
+
+  </div>
+
+  <!-- QR Generation -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    const MENU_URL = 'https://arcris1.github.io/queen-taste-pub/';
+    const canvas = document.getElementById('qrCanvas');
+
+    QRCode.toCanvas(canvas, MENU_URL, {
+      width: 280,
+      margin: 1,
+      errorCorrectionLevel: 'H',  // High — survives logos / smudges
+      color: {
+        dark:  '#1B0F08',
+        light: '#F5E6D3'
+      }
+    }, (err) => {
+      if (err) {
+        console.error(err);
+        // Fallback: render via online QR API as <img>
+        const img = document.createElement('img');
+        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(MENU_URL)}&bgcolor=F5E6D3&color=1B0F08`;
+        img.width = 280; img.height = 280;
+        canvas.replaceWith(img);
+      }
+    });
+
+    function downloadQR() {
+      const c = document.getElementById('qrCanvas');
+      if (!c || !c.toDataURL) {
+        alert('QR not ready yet. Try again in a moment.');
+        return;
+      }
+      const link = document.createElement('a');
+      link.download = 'queen-taste-pub-qr.png';
+      link.href = c.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
