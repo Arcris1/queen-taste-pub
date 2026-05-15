@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2A1810" />
+  <meta name="description" content="Queen Taste & Pub — Feel Good · Eat Fresh · Live Well. Browse our menu of coffee, iced tea, Korean noodles, sizzling plates, and more." />
+  <title>Queen Taste & Pub · Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="crown" aria-hidden="true">
+        <svg viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 14 L14 32 L24 18 L32 36 L40 18 L50 32 L58 14 L54 40 L10 40 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
+          <circle cx="6" cy="14" r="3" fill="currentColor"/>
+          <circle cx="32" cy="10" r="3.5" fill="currentColor"/>
+          <circle cx="58" cy="14" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <p class="eyebrow">Welcome to</p>
+      <h1 class="brand">Queen<span class="amp">Taste</span><span class="brand-line">&amp; Pub</span></h1>
+      <p class="tagline">Feel Good · Eat Fresh · Live Well</p>
+      <div class="location">
+        <span class="dot" aria-hidden="true"></span>
+        Lotus St. cor. Gladiola, Talon Tres, Las Piñas City
+      </div>
+    </div>
+    <div class="hero-fade" aria-hidden="true"></div>
+  </header>
+
+  <!-- MENU GRID -->
+  <main class="menu">
+    <div class="section-head">
+      <span class="ornament" aria-hidden="true">✦</span>
+      <h2>Our Menu</h2>
+      <p>Tap any category to view · pinch to zoom · swipe to browse</p>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- Cards injected by JS -->
+    </div>
+
+    <p class="hint">Showing 8 categories</p>
+  </main>
+
+  <!-- STICKY FOOTER -->
+  <nav class="footer-bar" aria-label="Contact">
+    <a class="action call" href="tel:+639457168208" aria-label="Call Queen Taste & Pub">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>
+        <strong>Call us</strong>
+        <em>0945 716 8208</em>
+      </span>
+    </a>
+    <a class="action fb" href="https://www.facebook.com/profile.php?id=61578332574458" target="_blank" rel="noopener" aria-label="Open Queen Taste & Pub on Facebook">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.25 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/></svg>
+      <span>
+        <strong>Facebook</strong>
+        <em>Queen Taste &amp; Pub</em>
+      </span>
+    </a>
+  </nav>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Menu viewer" hidden>
+    <button class="lb-close" id="lbClose" aria-label="Close viewer">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="lb-title" id="lbTitle">Coffee</div>
+    <div class="lb-counter" id="lbCounter">1 / 8</div>
+
+    <button class="lb-nav prev" id="lbPrev" aria-label="Previous category">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+    </button>
+    <button class="lb-nav next" id="lbNext" aria-label="Next category">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+
+    <div class="lb-stage" id="lbStage">
+      <img id="lbImg" alt="" />
+    </div>
+
+    <div class="lb-dots" id="lbDots"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
