@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Queen Taste & Pub — Table QR Poster</title>
+  <link rel="icon" type="image/png" href="images/queen-taste-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,30 +31,33 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 16px;
-      gap: 24px;
+      padding: 24px 12px 60px;
+      gap: 20px;
     }
 
+    /* ===== CONTROLS ===== */
     .controls {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
+      max-width: 95vw;
     }
 
     .controls button, .controls a {
       background: var(--gold);
       color: var(--bg-rich);
       border: none;
-      padding: 12px 22px;
+      padding: 11px 18px;
       border-radius: 999px;
       font-family: var(--font-body);
       font-weight: 600;
-      font-size: 13px;
-      letter-spacing: .05em;
+      font-size: 12px;
+      letter-spacing: .04em;
       cursor: pointer;
       text-decoration: none;
       transition: transform .15s ease, background .2s ease;
+      white-space: nowrap;
     }
     .controls button:hover, .controls a:hover { background: var(--gold-soft); }
     .controls button:active { transform: scale(.96); }
@@ -64,59 +68,115 @@
     }
     .controls .secondary:hover { background: rgba(212,165,116,.15); }
 
-    /* ===== POSTER ===== */
+    .hint-bar {
+      color: var(--cream-mid);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .65;
+      text-align: center;
+      max-width: 90vw;
+    }
+
+    /* ===== POSTER (A4) =====
+       Sized in mm so it prints exactly A4.
+       Scaled on screen so it always fits the viewport. */
+    .stage {
+      width: 210mm;
+      transform-origin: top center;
+    }
+
     .poster {
-      width: 210mm;          /* A4 width */
-      min-height: 297mm;     /* A4 height */
+      width: 210mm;
+      height: 297mm;
       background:
         radial-gradient(120% 80% at 50% -10%, rgba(212,165,116,.22), transparent 60%),
         radial-gradient(80% 60% at 50% 100%, rgba(139,58,46,.25), transparent 70%),
         linear-gradient(180deg, var(--bg-rich) 0%, var(--bg-warm) 60%, var(--bg-rich) 100%);
       color: var(--cream);
-      padding: 40mm 24mm;
+      padding: 38mm 22mm;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,.5);
-      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      /* Force colors/images to print: */
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* Auto-scale poster on screen so it always fits viewport width.
+       Print mode disables the scale (see @media print). */
+    @media (max-width: 820px) {
+      .stage { transform: scale(calc(95vw / 794px)); height: auto; margin-bottom: -200mm; }
+      .stage::after { content: ''; display: block; }
+    }
+    @media (min-width: 821px) and (max-width: 1100px) {
+      .stage { transform: scale(0.85); margin-bottom: -50mm; }
     }
 
     /* corner ornaments */
     .corner {
       position: absolute;
-      width: 90px;
-      height: 90px;
+      width: 26mm;
+      height: 26mm;
       border: 2px solid var(--gold);
-      opacity: .6;
+      opacity: .55;
     }
-    .corner.tl { top: 16mm; left: 16mm; border-right: none; border-bottom: none; }
-    .corner.tr { top: 16mm; right: 16mm; border-left: none; border-bottom: none; }
-    .corner.bl { bottom: 16mm; left: 16mm; border-right: none; border-top: none; }
-    .corner.br { bottom: 16mm; right: 16mm; border-left: none; border-top: none; }
+    .corner.tl { top: 14mm; left: 14mm; border-right: none; border-bottom: none; }
+    .corner.tr { top: 14mm; right: 14mm; border-left: none; border-bottom: none; }
+    .corner.bl { bottom: 14mm; left: 14mm; border-right: none; border-top: none; }
+    .corner.br { bottom: 14mm; right: 14mm; border-left: none; border-top: none; }
 
     .crown {
-      width: 80px; height: 60px;
+      width: 70px; height: 52px;
       color: var(--gold);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       filter: drop-shadow(0 4px 12px rgba(212,165,116,.4));
+    }
+
+    .logo-big {
+      width: 280px;
+      height: auto;
+      margin-bottom: 4px;
+      border-radius: 12px;
+      box-shadow:
+        0 0 0 1px rgba(212,165,116,.35),
+        0 0 50px rgba(212,165,116,.25),
+        0 18px 40px rgba(0,0,0,.35);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .logo-tent {
+      width: 78px;
+      height: auto;
+      margin-bottom: 4px;
+      border-radius: 6px;
+      box-shadow:
+        0 0 0 1px rgba(212,165,116,.3),
+        0 0 18px rgba(212,165,116,.2),
+        0 6px 14px rgba(0,0,0,.3);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
     .eyebrow {
       text-transform: uppercase;
       letter-spacing: .4em;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       color: var(--gold-soft);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .brand {
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: 84px;
+      font-size: 76px;
       line-height: .95;
       color: var(--cream);
       letter-spacing: .02em;
@@ -125,243 +185,359 @@
     .amp {
       font-style: italic;
       color: var(--gold);
-      font-size: 28px;
+      font-size: 26px;
       letter-spacing: .15em;
       display: block;
-      margin: 4px 0 0;
+      margin: 2px 0 0;
       font-weight: 500;
     }
 
     .brand-line {
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: .4em;
       color: var(--cream-mid);
       text-transform: uppercase;
       font-weight: 500;
-      margin-top: 10px;
+      margin-top: 8px;
       position: relative;
       display: inline-block;
     }
-
     .brand-line::before,
     .brand-line::after {
       content: '';
       position: absolute;
       top: 50%;
-      width: 40px;
+      width: 34px;
       height: 1px;
       background: var(--gold-deep);
       opacity: .7;
     }
-    .brand-line::before { right: calc(100% + 18px); }
-    .brand-line::after  { left:  calc(100% + 18px); }
+    .brand-line::before { right: calc(100% + 14px); }
+    .brand-line::after  { left:  calc(100% + 14px); }
 
     .tagline {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: 22px;
+      font-size: 20px;
       color: var(--gold-soft);
-      margin-top: 22px;
+      margin-top: 18px;
       letter-spacing: .04em;
     }
 
     /* ===== QR CARD ===== */
     .qr-card {
-      margin-top: 38px;
+      margin-top: 28px;
       background: var(--cream);
-      padding: 18px 18px 22px;
-      border-radius: 8px;
+      padding: 14px 14px 18px;
+      border-radius: 6px;
       box-shadow:
-        0 0 0 6px rgba(212,165,116,.25),
-        0 0 0 12px rgba(212,165,116,.12),
-        0 20px 50px rgba(0,0,0,.4);
+        0 0 0 5px rgba(212,165,116,.25),
+        0 0 0 10px rgba(212,165,116,.12),
+        0 16px 40px rgba(0,0,0,.4);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
 
-    .qr-card canvas, .qr-card img {
+    .qr-card #qrBox {
+      width: 240px;
+      height: 240px;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .qr-card #qrImg {
       display: block;
-      width: 280px;
-      height: 280px;
+      width: 240px;
+      height: 240px;
     }
-
-    .qr-card .corners-mini {
-      position: relative;
-      padding: 14px;
-      display: inline-block;
-    }
-    .qr-card .corners-mini::before,
-    .qr-card .corners-mini::after {
-      content: '';
-      position: absolute;
-      width: 24px; height: 24px;
-      border: 2px solid var(--bg-rich);
-    }
-    .qr-card .corners-mini::before { top: 0; left: 0; border-right: none; border-bottom: none; }
-    .qr-card .corners-mini::after  { bottom: 0; right: 0; border-left: none; border-top: none; }
 
     .qr-label {
-      margin-top: 14px;
+      margin-top: 10px;
       font-family: var(--font-display);
       font-weight: 600;
       color: var(--bg-rich);
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: .15em;
       text-transform: uppercase;
+      text-align: center;
     }
 
-    /* ===== CTA ===== */
+    /* ===== CTA + FOOTER ===== */
     .cta {
-      margin-top: 32px;
+      margin-top: 24px;
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 600;
       color: var(--cream);
       letter-spacing: .04em;
     }
-
     .cta-sub {
-      font-size: 13px;
+      font-size: 11px;
       color: var(--cream-mid);
       letter-spacing: .25em;
       text-transform: uppercase;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
-    /* ===== FOOTER ===== */
     .poster-footer {
       margin-top: auto;
-      padding-top: 28px;
+      padding-top: 22px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
       align-items: center;
-      font-size: 12px;
+      font-size: 11px;
+      color: var(--cream-mid);
+      letter-spacing: .04em;
+    }
+    .poster-footer .row { display: flex; align-items: center; gap: 8px; }
+    .poster-footer strong { color: var(--gold-soft); font-weight: 600; }
+    .divider {
+      width: 70px;
+      height: 1px;
+      background: var(--gold-deep);
+      opacity: .5;
+      margin: 6px 0;
+    }
+
+    /* ===== TABLE TENT MODE (4 per A4 sheet) =====
+       When body has data-mode="tents", we hide the big poster and show 4 small ones
+       in a 2×2 grid that fills one A4 sheet. */
+    .tents-sheet { display: none; }
+
+    body[data-mode="tents"] .stage { display: none; }
+    body[data-mode="tents"] .tents-sheet {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      width: 210mm;
+      height: 297mm;
+      gap: 0;
+      background: white;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body[data-mode="tents"] @media (max-width: 820px),
+    body[data-mode="tents"] {}
+
+    .tent {
+      width: 105mm;
+      height: 148.5mm;
+      background:
+        radial-gradient(120% 80% at 50% -10%, rgba(212,165,116,.22), transparent 60%),
+        radial-gradient(80% 60% at 50% 100%, rgba(139,58,46,.25), transparent 70%),
+        linear-gradient(180deg, var(--bg-rich) 0%, var(--bg-warm) 60%, var(--bg-rich) 100%);
+      color: var(--cream);
+      padding: 12mm 10mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px dashed rgba(0,0,0,.15);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tent .crown-small {
+      width: 38px; height: 28px;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .tent .brand-small {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 32px;
+      color: var(--cream);
+      line-height: .95;
+    }
+    .tent .brand-small em {
+      font-style: italic;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: .15em;
+      display: block;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .tent .tagline-small {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 11px;
+      color: var(--gold-soft);
+      margin-top: 6px;
+    }
+    .tent .qr-card-small {
+      margin-top: 8mm;
+      background: var(--cream);
+      padding: 6px;
+      border-radius: 4px;
+    }
+    .tent .qr-card-small img {
+      display: block;
+      width: 110px;
+      height: 110px;
+    }
+    .tent .scan-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 6mm;
+    }
+    .tent .tent-foot {
+      margin-top: auto;
+      font-size: 8px;
       color: var(--cream-mid);
       letter-spacing: .04em;
     }
 
-    .poster-footer .row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    /* When viewing tents on small screens, scale down */
+    @media (max-width: 820px) {
+      body[data-mode="tents"] .tents-sheet {
+        transform: scale(calc(95vw / 794px));
+        transform-origin: top center;
+        margin-bottom: -200mm;
+      }
     }
-
-    .poster-footer strong {
-      color: var(--gold-soft);
-      font-weight: 600;
-    }
-
-    .divider {
-      width: 80px;
-      height: 1px;
-      background: var(--gold-deep);
-      opacity: .5;
-      margin: 8px 0;
+    @media (min-width: 821px) and (max-width: 1100px) {
+      body[data-mode="tents"] .tents-sheet {
+        transform: scale(0.85);
+        transform-origin: top center;
+        margin-bottom: -50mm;
+      }
     }
 
     /* ===== PRINT ===== */
     @media print {
-      body { background: white; padding: 0; gap: 0; }
-      .controls { display: none; }
-      .poster {
-        box-shadow: none;
-        border-radius: 0;
-        width: 100%;
-        min-height: 100vh;
-        page-break-after: avoid;
+      body {
+        background: white !important;
+        padding: 0;
+        gap: 0;
       }
+      .controls, .hint-bar { display: none !important; }
+      .stage, .tents-sheet {
+        transform: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+      }
+      .tent { border: none; }
       @page { size: A4; margin: 0; }
+      /* Force color/background printing in all engines */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- CONTROLS (hidden when printing) -->
   <div class="controls">
-    <button onclick="window.print()">🖨️  Print Poster</button>
+    <button onclick="setMode('poster'); setTimeout(()=>window.print(), 100);">🖨️  Print Big Poster (1 per page)</button>
+    <button onclick="setMode('tents'); setTimeout(()=>window.print(), 100);">🖨️  Print Table Tents (4 per page)</button>
+    <button class="secondary" onclick="toggleMode()">👁️  Preview: <span id="modeLabel">Big Poster</span></button>
     <button class="secondary" onclick="downloadQR()">⬇️  Download QR (PNG)</button>
     <a class="secondary" href="index.html">← Back to menu</a>
   </div>
 
-  <!-- POSTER -->
-  <div class="poster" id="poster">
+  <p class="hint-bar">⚠️ In the print dialog, enable <strong>"Background graphics"</strong> so the brown prints</p>
 
-    <span class="corner tl"></span>
-    <span class="corner tr"></span>
-    <span class="corner bl"></span>
-    <span class="corner br"></span>
+  <!-- BIG A4 POSTER -->
+  <div class="stage" id="stage">
+    <div class="poster">
 
-    <svg class="crown" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 14 L14 32 L24 18 L32 36 L40 18 L50 32 L58 14 L54 40 L10 40 Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
-      <circle cx="6" cy="14" r="3" fill="currentColor"/>
-      <circle cx="32" cy="10" r="3.5" fill="currentColor"/>
-      <circle cx="58" cy="14" r="3" fill="currentColor"/>
-    </svg>
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
 
-    <p class="eyebrow">Welcome to</p>
-    <h1 class="brand">
-      Queen
-      <span class="amp">Taste</span>
-    </h1>
-    <span class="brand-line">&amp; Pub</span>
+      <p class="eyebrow">Welcome to</p>
+      <img class="logo-big" src="images/queen-taste-logo.png" alt="Queen Taste & Pub" />
 
-    <p class="tagline">Feel Good · Eat Fresh · Live Well</p>
-
-    <!-- QR CARD -->
-    <div class="qr-card">
-      <div class="corners-mini">
-        <canvas id="qrCanvas" width="280" height="280"></canvas>
+      <div class="qr-card">
+        <div id="qrBox">
+          <img id="qrImg"
+               width="240" height="240"
+               alt="QR code"
+               src="https://api.qrserver.com/v1/create-qr-code/?size=560x560&data=https%3A%2F%2Farcris1.github.io%2Fqueen-taste-pub%2F&bgcolor=F5E6D3&color=1B0F08&margin=10&ecc=H" />
+        </div>
+        <div class="qr-label">Scan Our Menu</div>
       </div>
-      <div class="qr-label">Scan Our Menu</div>
+
+      <p class="cta">View the full menu</p>
+      <p class="cta-sub">Point your camera · tap the link</p>
+
+      <div class="poster-footer">
+        <div class="divider"></div>
+        <div class="row"><strong>📍</strong> Lotus St. cor. Gladiola, Talon Tres, Las Piñas City</div>
+        <div class="row"><strong>📞</strong> 0945 716 8208 &nbsp;·&nbsp; <strong>f</strong> Queen Taste &amp; Pub</div>
+      </div>
     </div>
-
-    <p class="cta">View the full menu</p>
-    <p class="cta-sub">Point your camera · tap the link</p>
-
-    <div class="poster-footer">
-      <div class="divider"></div>
-      <div class="row"><strong>📍</strong> Lotus St. cor. Gladiola, Talon Tres, Las Piñas City</div>
-      <div class="row"><strong>📞</strong> 0945 716 8208 &nbsp;·&nbsp; <strong>f</strong> Queen Taste &amp; Pub</div>
-    </div>
-
   </div>
 
-  <!-- QR Generation -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <!-- 4 TABLE TENTS PER A4 SHEET -->
+  <div class="tents-sheet" id="tents">
+    <!-- 4 identical tents injected via JS -->
+  </div>
+
   <script>
     const MENU_URL = 'https://arcris1.github.io/queen-taste-pub/';
-    const canvas = document.getElementById('qrCanvas');
+    const QR_BIG   = 'https://api.qrserver.com/v1/create-qr-code/?size=560x560&data=' + encodeURIComponent(MENU_URL) + '&bgcolor=F5E6D3&color=1B0F08&margin=10&ecc=H';
+    const QR_SMALL = 'https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=' + encodeURIComponent(MENU_URL) + '&bgcolor=F5E6D3&color=1B0F08&margin=8&ecc=H';
+    const QR_HIRES = 'https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=' + encodeURIComponent(MENU_URL) + '&bgcolor=F5E6D3&color=1B0F08&margin=10&ecc=H&format=png';
 
-    QRCode.toCanvas(canvas, MENU_URL, {
-      width: 280,
-      margin: 1,
-      errorCorrectionLevel: 'H',  // High — survives logos / smudges
-      color: {
-        dark:  '#1B0F08',
-        light: '#F5E6D3'
-      }
-    }, (err) => {
-      if (err) {
-        console.error(err);
-        // Fallback: render via online QR API as <img>
-        const img = document.createElement('img');
-        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(MENU_URL)}&bgcolor=F5E6D3&color=1B0F08`;
-        img.width = 280; img.height = 280;
-        canvas.replaceWith(img);
-      }
+    // Inject 4 table tents
+    const tentHTML = `
+      <div class="tent">
+        <img class="logo-tent" src="images/queen-taste-logo.png" alt="Queen Taste & Pub" />
+        <div class="qr-card-small">
+          <img src="${QR_SMALL}" alt="QR code" />
+        </div>
+        <p class="scan-label">Scan Our Menu</p>
+        <p class="tent-foot">📞 0945 716 8208 · f Queen Taste &amp; Pub</p>
+      </div>`;
+    document.getElementById('tents').innerHTML = tentHTML.repeat(4);
+
+    // Mode toggle
+    function setMode(mode) {
+      document.body.dataset.mode = mode;
+      document.getElementById('modeLabel').textContent = mode === 'tents' ? 'Table Tents' : 'Big Poster';
+    }
+    function toggleMode() {
+      setMode(document.body.dataset.mode === 'tents' ? 'poster' : 'tents');
+    }
+    setMode('poster');
+
+    // QR fallback message
+    document.getElementById('qrImg').addEventListener('error', () => {
+      document.getElementById('qrBox').innerHTML = '<div style="padding:18px;color:#8B3A2E;font-family:Inter,sans-serif;font-size:12px;text-align:center;line-height:1.5;">QR couldn’t load.<br/>Check internet, then refresh.</div>';
     });
 
-    function downloadQR() {
-      const c = document.getElementById('qrCanvas');
-      if (!c || !c.toDataURL) {
-        alert('QR not ready yet. Try again in a moment.');
-        return;
+    // Download hi-res QR PNG
+    async function downloadQR() {
+      try {
+        const res = await fetch(QR_HIRES);
+        if (!res.ok) throw new Error('fetch failed');
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'queen-taste-pub-qr.png';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch (e) {
+        window.open(QR_HIRES, '_blank');
       }
-      const link = document.createElement('a');
-      link.download = 'queen-taste-pub-qr.png';
-      link.href = c.toDataURL('image/png');
-      link.click();
     }
   </script>
-
 </body>
 </html>
