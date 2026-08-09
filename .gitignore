@@ -1,0 +1,14 @@
+# OS / editor cruft
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Credentials — never belongs in a public Pages repo
+ssh
+*.pem
+*.key
+id_rsa*
+.env
