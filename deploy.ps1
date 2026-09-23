@@ -92,3 +92,4 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host ""
 Write-Host "Done. Live at $SiteUrl" -ForegroundColor Green
 Write-Host "Phones will fetch fresh CSS/JS thanks to v=$build" -ForegroundColor Green
+exit 0
