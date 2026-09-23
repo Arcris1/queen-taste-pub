@@ -1,0 +1,24 @@
+# Queen Taste & Pub menu on vps-prod-01, behind the shared Caddy front door
+# (~/apps/ruined-your-friendships). Publishes NO host ports — Caddy owns 80/443
+# and reaches this container by its full name over the external labada-edge net.
+name: queen-taste-menu
+
+services:
+  web:
+    image: nginxinc/nginx-unprivileged:1.27-alpine
+    container_name: queen-taste-menu-web
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 64m
+    tmpfs:
+      - /tmp
+    volumes:
+      - ../site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [labada-edge]
+
+networks:
+  labada-edge:
+    external: true

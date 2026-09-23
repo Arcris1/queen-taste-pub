@@ -13,7 +13,8 @@ Customers scan a QR code at the table and land on a phone-first page showing the
 | `script.js` | Renders the category shelves and drives the full-size page viewer |
 | `images/` | The eleven menu posters plus the logo |
 | `qr-poster.html` | Printable QR-code poster and table tent |
-| `deploy.ps1` | Cache-bust, commit and push in one command |
+| `deploy.ps1` | Cache-bust, commit, publish to the VPS and push in one command |
+| `deploy/` | Docker Compose + nginx config for the VPS |
 
 Menu content lives in the `PAGES` array at the top of `script.js` — filename, title, and the one-line description shown under each card.
 
@@ -31,4 +32,4 @@ Menu content lives in the `PAGES` array at the top of `script.js` — filename, 
 
 ## Hosting
 
-Served by GitHub Pages from the `main` branch. Pushing to `main` publishes; the site is live about a minute later.
+Served from the VPS at https://queen-taste-pub.digitalapps.tech/ by a small nginx container behind the shared Caddy (`deploy/`). `deploy.ps1` publishes the committed files there, verifies the live page, then pushes to GitHub as a backup.
