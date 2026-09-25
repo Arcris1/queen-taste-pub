@@ -17,7 +17,7 @@ const PAGES = [
   { group: 'eat', title: 'Sizzling Plates',   sub: 'Sisig, pork chop, barkada platters',  file: 'images/sizzling.jpg' },
   { group: 'eat', title: 'Siesta',            sub: 'Tteokbokki, kimbap, mandu, fries',    file: 'images/siesta.jpg' },
 
-  { group: 'chill', title: 'Ice &amp; Chill', sub: 'Beers, soju, mojito and pulutan bundles', file: 'images/ice-chill.jpg' },
+  { group: 'chill', title: 'Ice &amp; Chill', sub: 'Beers, soju, makgeoli, wine and pulutan bundles', file: 'images/ice-chill.jpg' },
 ];
 
 const gridSip     = document.getElementById('gridSip');
